@@ -1,0 +1,81 @@
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import PageLayout from "@/components/layout/PageLayout";
+import SectionHeading from "@/components/ui/SectionHeading";
+import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
+import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
+
+const exhibitions = [
+  {
+    title: "Almost Real",
+    city: "Tel Aviv",
+    year: "2025",
+    image: exhibitionTelAviv,
+    slug: "almost-real",
+    statement: "An exhibition exploring the tension between authentic human expression and AI-generated imagery. Almost Real asks: in a world of synthetic media, what does it mean for art to be 'real'?",
+    artists: ["Nataly Shafir", "David Chen", "Marco Rossi", "Aisha Patel", "Yuki Tanaka"],
+  },
+  {
+    title: "Bangkok Edition",
+    city: "Bangkok",
+    year: "2025",
+    image: exhibitionBangkok,
+    slug: "bangkok",
+    statement: "A cross-cultural dialogue between Southeast Asian visual traditions and AI-driven art practices. The Bangkok Edition brings Designers in AI into conversation with local creative communities.",
+    artists: ["Nataly Shafir", "Amara Osei", "Carlos Mendoza", "Sofia Andersson"],
+  },
+];
+
+const Exhibitions = () => {
+  return (
+    <PageLayout>
+      <div className="pt-24 md:pt-32">
+        <section className="container py-16 md:py-24">
+          <SectionHeading
+            label="Exhibitions"
+            title="International Exhibitions"
+            description="Each exhibition is a unique cultural moment — created in dialogue with a specific city, space, and audience. Our exhibitions build legitimacy, visibility, and creative exchange across borders."
+          />
+
+          <div className="space-y-24 mt-8">
+            {exhibitions.map((ex, i) => (
+              <motion.article
+                key={ex.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16"
+              >
+                <div className="overflow-hidden aspect-[4/3]">
+                  <img src={ex.image} alt={`${ex.title} exhibition`} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">
+                    {ex.city} — {ex.year}
+                  </span>
+                  <h3 className="font-display text-3xl md:text-4xl text-foreground mt-2">{ex.title}</h3>
+                  <p className="mt-4 text-muted-foreground font-body font-light leading-relaxed">
+                    {ex.statement}
+                  </p>
+                  <div className="mt-6">
+                    <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-body mb-2">Participating Artists</p>
+                    <div className="flex flex-wrap gap-2">
+                      {ex.artists.map((a) => (
+                        <span key={a} className="text-xs font-body text-foreground px-3 py-1 border border-border">
+                          {a}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+      </div>
+    </PageLayout>
+  );
+};
+
+export default Exhibitions;
