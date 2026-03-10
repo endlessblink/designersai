@@ -11,6 +11,7 @@ const exhibitions = [
     city: "Tel Aviv",
     year: "2025",
     image: exhibitionTelAviv,
+    video: "/videos/almost-real.mp4",
     slug: "almost-real",
     statement: "An exhibition exploring the tension between authentic human expression and AI-generated imagery. Almost Real asks: in a world of synthetic media, what does it mean for art to be 'real'?",
     artists: ["Nataly Shafir", "David Chen", "Marco Rossi", "Aisha Patel", "Yuki Tanaka"],
@@ -20,6 +21,7 @@ const exhibitions = [
     city: "Bangkok",
     year: "2025",
     image: exhibitionBangkok,
+    video: undefined as string | undefined,
     slug: "bangkok",
     statement: "A cross-cultural dialogue between Southeast Asian visual traditions and AI-driven art practices. The Bangkok Edition brings Designers in AI into conversation with local creative communities.",
     artists: ["Nataly Shafir", "Amara Osei", "Carlos Mendoza", "Sofia Andersson"],
@@ -48,7 +50,11 @@ const Exhibitions = () => {
                 className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16"
               >
                 <div className="overflow-hidden aspect-[4/3]">
-                  <img src={ex.image} alt={`${ex.title} exhibition`} className="w-full h-full object-cover" loading="lazy" />
+                  {ex.video ? (
+                    <video src={ex.video} className="w-full h-full object-cover" autoPlay muted loop playsInline />
+                  ) : (
+                    <img src={ex.image} alt={`${ex.title} exhibition`} className="w-full h-full object-cover" loading="lazy" />
+                  )}
                 </div>
                 <div className="flex flex-col justify-center">
                   <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">
