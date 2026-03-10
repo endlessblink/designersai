@@ -104,9 +104,9 @@ const Index = () => {
               },
               {
                 title: "Bangkok Edition",
-                city: "Bangkok",
-                year: "2025",
+                city: "Bangkok — 2025",
                 image: exhibitionBangkok,
+                video: undefined as string | undefined,
                 slug: "/exhibitions/bangkok",
               },
             ].map((ex, i) => (
