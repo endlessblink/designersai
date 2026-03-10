@@ -97,9 +97,9 @@ const Index = () => {
             {[
               {
                 title: "Almost Real",
-                city: "Tel Aviv",
-                year: "2025",
+                city: 'Tel Aviv "Beit Hanocho" — 2026',
                 image: exhibitionTelAviv,
+                video: "/videos/almost-real.mp4",
                 slug: "/exhibitions/almost-real",
               },
               {
