@@ -119,17 +119,21 @@ const Index = () => {
               >
                 <Link to={ex.slug} className="group block">
                   <div className="relative overflow-hidden aspect-[4/3]">
-                    <img
-                      src={ex.image}
-                      alt={`${ex.title} exhibition`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    {ex.video ? (
+                      <video src={ex.video} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" autoPlay muted loop playsInline />
+                    ) : (
+                      <img
+                        src={ex.image}
+                        alt={`${ex.title} exhibition`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-deep-charcoal/20 group-hover:bg-deep-charcoal/10 transition-colors" />
                   </div>
                   <div className="mt-5">
                     <h3 className="font-display text-2xl text-foreground">{ex.title}</h3>
                     <p className="text-sm text-muted-foreground font-body mt-1">
-                      {ex.city} — {ex.year}
+                      {ex.city}
                     </p>
                   </div>
                 </Link>
