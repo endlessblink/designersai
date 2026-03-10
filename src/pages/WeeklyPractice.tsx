@@ -20,8 +20,8 @@ const WeeklyPractice = () => {
             <div className="aspect-video border border-border overflow-hidden">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed?listType=user_uploads&list=@%D7%9E%D7%A2%D7%A6%D7%91%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%A0%D7%94"
-                title="Designers in AI — YouTube Channel"
+                src="https://www.youtube.com/embed/91Wc2IZYqD8"
+                title="Designers in AI — Featured Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
