@@ -11,6 +11,7 @@ const exhibitions = [
     city: "Tel Aviv",
     year: "2025",
     image: exhibitionTelAviv,
+    video: "/videos/almost-real.mp4",
     slug: "almost-real",
     statement: "An exhibition exploring the tension between authentic human expression and AI-generated imagery. Almost Real asks: in a world of synthetic media, what does it mean for art to be 'real'?",
     artists: ["Nataly Shafir", "David Chen", "Marco Rossi", "Aisha Patel", "Yuki Tanaka"],
