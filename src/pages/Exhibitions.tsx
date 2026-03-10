@@ -48,7 +48,11 @@ const Exhibitions = () => {
                 className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16"
               >
                 <div className="overflow-hidden aspect-[4/3]">
-                  <img src={ex.image} alt={`${ex.title} exhibition`} className="w-full h-full object-cover" loading="lazy" />
+                  {ex.video ? (
+                    <video src={ex.video} className="w-full h-full object-cover" autoPlay muted loop playsInline />
+                  ) : (
+                    <img src={ex.image} alt={`${ex.title} exhibition`} className="w-full h-full object-cover" loading="lazy" />
+                  )}
                 </div>
                 <div className="flex flex-col justify-center">
                   <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">
