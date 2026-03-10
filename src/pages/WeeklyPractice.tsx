@@ -17,13 +17,25 @@ const WeeklyPractice = () => {
 
           <AnimatedSection className="mt-8 space-y-12">
             {/* Video embed placeholder */}
-            <div className="aspect-video bg-secondary border border-border flex items-center justify-center">
-              <div className="flex flex-col items-center gap-3">
-                <div className="w-16 h-16 rounded-full border border-muted-foreground/30 flex items-center justify-center hover:bg-muted transition-colors cursor-pointer">
-                  <Play size={24} className="text-muted-foreground ml-1" />
-                </div>
-                <p className="text-sm text-muted-foreground font-body">YouTube Channel — Coming Soon</p>
-              </div>
+            <div className="aspect-video border border-border overflow-hidden">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed?listType=user_uploads&list=@%D7%9E%D7%A2%D7%A6%D7%91%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%A0%D7%94"
+                title="Designers in AI — YouTube Channel"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="flex justify-center">
+              <a
+                href="https://www.youtube.com/@%D7%9E%D7%A2%D7%A6%D7%91%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%A0%D7%94"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-body"
+              >
+                <Play size={16} />
+                Visit our YouTube Channel
+              </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
