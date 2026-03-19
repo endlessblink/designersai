@@ -25,7 +25,7 @@ const Header = () => {
       <div className={`transition-colors duration-500 ${isHome ? "bg-deep-charcoal/80 backdrop-blur-md" : "bg-background/90 backdrop-blur-md border-b border-border"}`}>
         <div className="container flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-3">
-            <img src={communityLogo} alt="קהילת מעצבים ב-AI" className="h-10 md:h-12 w-auto" />
+            <img src={isHome ? communityLogoWhite : communityLogo} alt="קהילת מעצבים ב-AI" className="h-10 md:h-12 w-auto" />
             <div className="flex flex-col leading-tight">
               <span className={`font-display text-lg md:text-xl font-semibold tracking-tight ${isHome ? "text-warm-cream" : "text-foreground"}`}>
                 Designers in AI
