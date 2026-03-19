@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import communityLogo from "@/assets/community-logo.png";
+import communityLogoWhite from "@/assets/community-logo-white.png";
 
 const navLinks = [
   { to: "/about", label: "About" },
