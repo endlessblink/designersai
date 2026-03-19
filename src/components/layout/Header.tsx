@@ -23,13 +23,16 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className={`transition-colors duration-500 ${isHome ? "bg-deep-charcoal/80 backdrop-blur-md" : "bg-background/90 backdrop-blur-md border-b border-border"}`}>
         <div className="container flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="flex flex-col leading-tight">
-            <span className={`font-display text-lg md:text-xl font-semibold tracking-tight ${isHome ? "text-warm-cream" : "text-foreground"}`}>
-              Designers in AI
-            </span>
-            <span className={`text-[10px] uppercase tracking-[0.25em] font-body font-light ${isHome ? "text-warm-cream/60" : "text-muted-foreground"}`}>
-              Global Cultural Series
-            </span>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={communityLogo} alt="קהילת מעצבים ב-AI" className="h-10 md:h-12 w-auto" />
+            <div className="flex flex-col leading-tight">
+              <span className={`font-display text-lg md:text-xl font-semibold tracking-tight ${isHome ? "text-warm-cream" : "text-foreground"}`}>
+                Designers in AI
+              </span>
+              <span className={`text-[10px] uppercase tracking-[0.25em] font-body font-light ${isHome ? "text-warm-cream/60" : "text-muted-foreground"}`}>
+                Global Cultural Series
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
