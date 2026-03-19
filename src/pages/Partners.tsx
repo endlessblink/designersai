@@ -12,7 +12,7 @@ const Partners = () => {
           <SectionHeading
             label="Collaborate"
             title="For Cultural Partners"
-            description="Designers in AI is an international creative platform that brings together exhibitions, community practice, and public discourse around AI as an artistic medium."
+            description="Designers with AI is an international creative platform that brings together exhibitions, community practice, and public discourse around AI as an artistic medium."
           />
 
           <AnimatedSection className="space-y-10 mt-4">

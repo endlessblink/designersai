@@ -12,7 +12,7 @@ const WeeklyPractice = () => {
           <SectionHeading
             label="Weekly Practice"
             title="Inside the Practice"
-            description="Designers in AI is not only an exhibition platform — it is a living, weekly creative practice. Every week, our community meets to experiment, share process, and push the boundaries of what AI can do as an artistic medium."
+            description="Designers with AI is not only an exhibition platform — it is a living, weekly creative practice. Every week, our community meets to experiment, share process, and push the boundaries of what AI can do as an artistic medium."
           />
 
           <AnimatedSection className="mt-8 space-y-12">
@@ -21,7 +21,7 @@ const WeeklyPractice = () => {
               <iframe
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/91Wc2IZYqD8"
-                title="Designers in AI — Featured Video"
+                title="Designers with AI — Featured Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />

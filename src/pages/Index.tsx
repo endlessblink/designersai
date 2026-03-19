@@ -24,7 +24,7 @@ const Index = () => {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-warm-cream font-medium tracking-tight">
-              Designers in AI
+              Designers with AI
             </h1>
           </motion.div>
           <motion.p
@@ -80,7 +80,7 @@ const Index = () => {
             "We believe AI is not replacing the artist — it is expanding what art can become."
           </p>
           <p className="mt-6 text-sm text-muted-foreground font-body">
-            Founded by Nataly Shafir, Designers in AI brings together an international community of artists, designers, and thinkers exploring AI as a creative medium.
+            Founded by Nataly Shafir, Designers with AI brings together an international community of artists, designers, and thinkers exploring AI as a creative medium.
           </p>
         </div>
       </AnimatedSection>
@@ -206,7 +206,7 @@ const Index = () => {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { source: "Design Week", title: "AI Art Goes Global with Designers in AI", date: "2025" },
+              { source: "Design Week", title: "AI Art Goes Global with Designers with AI", date: "2025" },
               { source: "The Art Newspaper", title: "Almost Real: When AI Meets Human Creativity", date: "2025" },
               { source: "Creative Review", title: "The Community Redefining AI Art Practice", date: "2024" },
             ].map((item, i) => (
@@ -240,7 +240,7 @@ const Index = () => {
             <SectionHeading
               align="center"
               title="Become Part of the Network"
-              description="Designers in AI is an evolving community. We welcome artists and creators who are shaping the future of AI-driven art."
+              description="Designers with AI is an evolving community. We welcome artists and creators who are shaping the future of AI-driven art."
             />
             <Link
               to="/join"

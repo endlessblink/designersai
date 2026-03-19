@@ -31,8 +31,8 @@ const Join = () => {
         <section className="container py-16 md:py-24 max-w-2xl">
           <SectionHeading
             label="Join"
-            title="Apply to Join Designers in AI"
-            description="Designers in AI is an evolving creative network. Membership is curated in order to maintain quality, engagement, and collaborative spirit. We welcome artists and creators who are seriously exploring AI as a creative medium."
+            title="Apply to Join Designers with AI"
+            description="Designers with AI is an evolving creative network. Membership is curated in order to maintain quality, engagement, and collaborative spirit. We welcome artists and creators who are seriously exploring AI as a creative medium."
           />
 
           <motion.form

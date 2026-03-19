@@ -13,7 +13,7 @@ const artists: Artist[] = [
   {
     name: "Nataly Shafir",
     title: "Founder & Artistic Director",
-    bio: "A designer, creative director, and cultural organizer who founded Designers in AI. Nataly bridges design, education, and curatorial practice to create meaningful cultural moments around AI creativity.",
+    bio: "A designer, creative director, and cultural organizer who founded Designers with AI. Nataly bridges design, education, and curatorial practice to create meaningful cultural moments around AI creativity.",
     isFounder: true,
   },
   {
@@ -61,7 +61,7 @@ const Artists = () => {
           <SectionHeading
             label="Community"
             title="Community Artists"
-            description="Designers in AI is a living and evolving creative network. The artists below represent the current community — a growing group of practitioners exploring AI as an artistic medium across disciplines, cultures, and geographies."
+            description="Designers with AI is a living and evolving creative network. The artists below represent the current community — a growing group of practitioners exploring AI as an artistic medium across disciplines, cultures, and geographies."
           />
 
           <div className="space-y-0">

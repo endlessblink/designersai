@@ -28,7 +28,7 @@ const Header = () => {
             <img src={isHome ? communityLogoWhite : communityLogo} alt="קהילת מעצבים ב-AI" className="h-10 md:h-12 w-auto" />
             <div className="flex flex-col leading-tight">
               <span className={`font-display text-lg md:text-xl font-semibold tracking-tight ${isHome ? "text-warm-cream" : "text-foreground"}`}>
-                Designers in AI
+                Designers with AI
               </span>
               <span className={`text-[10px] uppercase tracking-[0.25em] font-body font-light ${isHome ? "text-warm-cream/60" : "text-muted-foreground"}`}>
                 Global Cultural Series
