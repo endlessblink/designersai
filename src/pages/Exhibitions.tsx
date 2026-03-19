@@ -23,7 +23,7 @@ const exhibitions = [
     image: exhibitionBangkok,
     video: undefined as string | undefined,
     slug: "bangkok",
-    statement: "A cross-cultural dialogue between Southeast Asian visual traditions and AI-driven art practices. The Bangkok Edition brings Designers in AI into conversation with local creative communities.",
+    statement: "A cross-cultural dialogue between Southeast Asian visual traditions and AI-driven art practices. The Bangkok Edition brings Designers with AI into conversation with local creative communities.",
     artists: ["Nataly Shafir", "Amara Osei", "Carlos Mendoza", "Sofia Andersson"],
   },
 ];

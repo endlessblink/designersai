@@ -4,10 +4,10 @@ import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const pressItems = [
-  { source: "Design Week", title: "AI Art Goes Global with Designers in AI", date: "March 2025", excerpt: "A deep look at how one community is reshaping the international AI art landscape through exhibitions and weekly practice." },
+  { source: "Design Week", title: "AI Art Goes Global with Designers with AI", date: "March 2025", excerpt: "A deep look at how one community is reshaping the international AI art landscape through exhibitions and weekly practice." },
   { source: "The Art Newspaper", title: "Almost Real: When AI Meets Human Creativity", date: "February 2025", excerpt: "Coverage of the Tel Aviv exhibition that brought together eight international artists working at the frontier of AI creativity." },
-  { source: "Creative Review", title: "The Community Redefining AI Art Practice", date: "January 2025", excerpt: "An interview-driven feature exploring the collaborative spirit behind Designers in AI." },
-  { source: "Wallpaper*", title: "From Tel Aviv to Bangkok: A Cultural Series Powered by AI", date: "December 2024", excerpt: "How Designers in AI is building a global presence through carefully curated city editions." },
+  { source: "Creative Review", title: "The Community Redefining AI Art Practice", date: "January 2025", excerpt: "An interview-driven feature exploring the collaborative spirit behind Designers with AI." },
+  { source: "Wallpaper*", title: "From Tel Aviv to Bangkok: A Cultural Series Powered by AI", date: "December 2024", excerpt: "How Designers with AI is building a global presence through carefully curated city editions." },
   { source: "It's Nice That", title: "Inside the Weekly Practice of AI-Driven Artists", date: "November 2024", excerpt: "An intimate look at the community's weekly creative sessions and what they reveal about artistic process in the age of AI." },
 ];
 
@@ -19,7 +19,7 @@ const Press = () => {
           <SectionHeading
             label="Press & Media"
             title="In the Conversation"
-            description="Articles, interviews, and publications featuring Designers in AI and our community members."
+            description="Articles, interviews, and publications featuring Designers with AI and our community members."
           />
 
           <div className="space-y-0">

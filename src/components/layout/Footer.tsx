@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="font-display text-2xl text-warm-cream mb-3">Designers in AI</h3>
+            <h3 className="font-display text-2xl text-warm-cream mb-3">Designers with AI</h3>
             <p className="text-sm font-body font-light leading-relaxed max-w-md text-warm-cream/60">
               A living creative network exploring artificial intelligence as an artistic medium. Founded by Nataly Shafir.
             </p>
@@ -50,7 +50,7 @@ const Footer = () => {
 
         <div className="mt-16 pt-8 border-t border-warm-cream/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-warm-cream/40 font-body">
-            © {new Date().getFullYear()} Designers in AI. All rights reserved.
+            © {new Date().getFullYear()} Designers with AI. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-xs text-warm-cream/40 hover:text-warm-cream transition-colors">YouTube</a>
