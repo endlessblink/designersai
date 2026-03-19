@@ -4,7 +4,7 @@ import { ArrowRight, Play } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import heroBg from "@/assets/hero-bg.jpg";
+
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
 
