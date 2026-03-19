@@ -110,10 +110,10 @@ const Index = () => {
                 slug: "/exhibitions/almost-real",
               },
               {
-                title: "Bangkok Edition",
-                city: "Bangkok — 2025",
+                title: "Living Ink — Illustrating the Future",
+                city: "Bangkok — Nextopia/Paragon",
                 image: exhibitionBangkok,
-                video: undefined as string | undefined,
+                video: "/videos/living-ink.mp4",
                 slug: "/exhibitions/bangkok",
               },
             ].map((ex, i) => (
