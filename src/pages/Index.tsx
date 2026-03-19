@@ -14,7 +14,14 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="AI art installation" className="w-full h-full object-cover" />
+          <video
+            src="/videos/hero-bg.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-deep-charcoal/60" />
         </div>
         <div className="relative z-10 container text-center">
