@@ -14,17 +14,19 @@ const exhibitions = [
     video: "/videos/almost-real.mp4",
     slug: "almost-real",
     statement: "An exhibition exploring the tension between authentic human expression and AI-generated imagery. Almost Real asks: in a world of synthetic media, what does it mean for art to be 'real'?",
+    website: undefined as string | undefined,
     artists: ["Nataly Shafir", "David Chen", "Marco Rossi", "Aisha Patel", "Yuki Tanaka"],
   },
   {
-    title: "Bangkok Edition",
-    city: "Bangkok",
+    title: "Living Ink — Illustrating the Future",
+    city: "Bangkok — Nextopia/Paragon",
     year: "2025",
     image: exhibitionBangkok,
-    video: undefined as string | undefined,
+    video: "/videos/living-ink.mp4",
     slug: "bangkok",
     statement: "A cross-cultural dialogue between Southeast Asian visual traditions and AI-driven art practices. The Bangkok Edition brings Designers with AI into conversation with local creative communities.",
-    artists: ["Nataly Shafir", "Amara Osei", "Carlos Mendoza", "Sofia Andersson"],
+    website: "https://nex.hsutcc.com/",
+    artists: ["Noa Tamir", "Maya Elhav Nachson", "Sharom Mass", "Noam Neomovski", "Oren Meyuhas", "Gili Comforty", "Carin Besser", "Nataly Shafir"],
   },
 ];
 
@@ -74,6 +76,16 @@ const Exhibitions = () => {
                       ))}
                     </div>
                   </div>
+                  {ex.website && (
+                    <a
+                      href={ex.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-body text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                    >
+                      Visit Exhibition Website →
+                    </a>
+                  )}
                 </div>
               </motion.article>
             ))}
