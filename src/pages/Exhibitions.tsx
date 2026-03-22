@@ -76,6 +76,16 @@ const Exhibitions = () => {
                       ))}
                     </div>
                   </div>
+                  {ex.website && (
+                    <a
+                      href={ex.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-body text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                    >
+                      Visit Exhibition Website →
+                    </a>
+                  )}
                 </div>
               </motion.article>
             ))}
