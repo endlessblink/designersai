@@ -16,43 +16,31 @@ const artists: Artist[] = [
     bio: "A designer, creative director, and cultural organizer who founded Designers with AI. Nataly bridges design, education, and curatorial practice to create meaningful cultural moments around AI creativity.",
     isFounder: true,
   },
-  {
-    name: "Aisha Patel",
-    title: "Generative Visual Artist",
-    bio: "Working at the intersection of traditional Indian miniature painting and AI-generated imagery. Aisha's work explores cultural memory through computational lenses.",
-  },
-  {
-    name: "Carlos Mendoza",
-    title: "Digital Sculptor & Architect",
-    bio: "Trained as an architect in Mexico City, Carlos uses AI to generate impossible structures that question the boundaries between built environment and imagination.",
-  },
-  {
-    name: "David Chen",
-    title: "AI Filmmaker & Visual Storyteller",
-    bio: "Based in Taipei, David creates short films and visual narratives using AI tools, exploring themes of identity, displacement, and digital consciousness.",
-  },
-  {
-    name: "Amara Osei",
-    title: "Mixed Media & AI Artist",
-    bio: "Amara combines traditional West African textile patterns with AI-generated forms, creating works that speak to cultural preservation in a technological age.",
-  },
-  {
-    name: "Marco Rossi",
-    title: "Photographer & AI Experimentalist",
-    bio: "An Italian photographer who uses AI to extend the language of documentary photography, creating images that exist between fact and fiction.",
-  },
-  {
-    name: "Sofia Andersson",
-    title: "Interaction Designer & Creative Coder",
-    bio: "Based in Stockholm, Sofia creates interactive installations that invite audiences to co-create with AI systems in real-time gallery settings.",
-  },
-  {
-    name: "Yuki Tanaka",
-    title: "AI Illustrator & Print Artist",
-    bio: "Yuki blends the aesthetic traditions of Japanese woodblock printing with AI-generated imagery, creating prints that feel both ancient and futuristic.",
-  },
+  { name: "Sivan Darmon Pritsker", title: "Community Artist", bio: "" },
+  { name: "Gina Dawidowicz", title: "Community Artist", bio: "" },
+  { name: "Maya Elav Nachshon", title: "Community Artist", bio: "" },
+  { name: "Gili Comforty", title: "Community Artist", bio: "" },
+  { name: "Sharon Mass", title: "Community Artist", bio: "" },
+  { name: "Gilad Edelstein", title: "Community Artist", bio: "" },
+  { name: "Mira Feder", title: "Community Artist", bio: "" },
+  { name: "Elad Baadany Hoogervorst", title: "Community Artist", bio: "" },
+  { name: "Noam Naumovsky", title: "Community Artist", bio: "" },
+  { name: "Natalie Kaplan", title: "Community Artist", bio: "" },
+  { name: "Ifat Kariv Gurion", title: "Community Artist", bio: "" },
+  { name: "Maya Pinto-Koren", title: "Community Artist", bio: "" },
+  { name: "Noa Tamir", title: "Community Artist", bio: "" },
+  { name: "Inbal Weisman", title: "Community Artist", bio: "" },
+  { name: "Orit Litmanovitz Shiber", title: "Community Artist", bio: "" },
+  { name: "Moshe Eylon", title: "Community Artist", bio: "" },
+  { name: "Revital Avidar", title: "Community Artist", bio: "" },
+  { name: "Daniel Atzil", title: "Community Artist", bio: "" },
+  { name: "Lee Aloni", title: "Community Artist", bio: "" },
+  { name: "יואב עינהר", title: "Community Artist", bio: "" },
+  { name: "קארין בסר", title: "Community Artist", bio: "" },
+  { name: "איתי קורוניו", title: "Community Artist", bio: "" },
+  { name: "אריל אלויה ק.", title: "Community Artist", bio: "" },
+  { name: "טלי אפל", title: "Community Artist", bio: "" },
 ];
-
 const Artists = () => {
   return (
     <PageLayout>
