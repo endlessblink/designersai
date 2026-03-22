@@ -159,7 +159,7 @@ const Index = () => {
             description="Artists, designers, and cultural practitioners from around the world — united by curiosity and creative practice with AI."
           />
           <div className="flex flex-wrap gap-4 mt-8">
-            {["Nataly Shafir", "David Chen", "Aisha Patel", "Marco Rossi", "Yuki Tanaka", "Sofia Andersson", "Carlos Mendoza", "Amara Osei"].map(
+            {["Nataly Shafir", "Sivan Darmon Pritsker", "Gina Dawidowicz", "Maya Elav Nachshon", "Gili Comforty", "Sharon Mass", "Gilad Edelstein", "Mira Feder", "Elad Baadany Hoogervorst", "Noam Naumovsky", "Natalie Kaplan", "Ifat Kariv Gurion"].map(
               (name, i) => (
                 <motion.div
                   key={name}
