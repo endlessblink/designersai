@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
