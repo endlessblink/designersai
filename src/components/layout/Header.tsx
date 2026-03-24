@@ -31,7 +31,7 @@ const Header = () => {
                 Designers with AI
               </span>
               <span className={`text-[10px] uppercase tracking-[0.25em] font-body font-light ${isHome ? "text-warm-cream/60" : "text-muted-foreground"}`}>
-                Global Cultural Series
+                Global Creative Community
               </span>
             </div>
           </Link>
