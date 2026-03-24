@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="font-display text-2xl text-warm-cream mb-3">Designers with AI</h3>
             <p className="text-sm font-body font-light leading-relaxed max-w-md text-warm-cream/60">
-              A living creative network exploring artificial intelligence as an artistic medium. Founded by Nataly Shafir.
+              A global creative community exploring artificial intelligence as an artistic medium. Founded by Nataly Shafir.
             </p>
           </div>
 
