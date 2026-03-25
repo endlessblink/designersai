@@ -40,7 +40,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-4 text-xs md:text-sm uppercase tracking-[0.3em] text-warm-cream/60 font-body"
           >
-            Global Cultural Series
+            Global Creative Community
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
