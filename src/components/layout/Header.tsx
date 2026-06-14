@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import communityLogo from "@/assets/community-logo.png";
 import communityLogoWhite from "@/assets/community-logo-white.png";
 
@@ -18,7 +18,8 @@ const navLinks = [
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const isHebrew = location.pathname === "/he";
+  const isHome = location.pathname === "/" || isHebrew;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -51,7 +52,28 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            <Link
+              to={isHebrew ? "/" : "/he"}
+              className={`inline-flex items-center gap-1.5 text-sm font-body font-light tracking-wide transition-colors ${
+                isHome ? "text-warm-cream/70 hover:text-warm-cream" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Globe size={15} />
+              {isHebrew ? "EN" : "עברית"}
+            </Link>
           </nav>
+
+          {/* Mobile language + toggle */}
+          <div className="lg:hidden flex items-center gap-1">
+            <Link
+              to={isHebrew ? "/" : "/he"}
+              className={`inline-flex items-center gap-1 p-2 text-sm font-body ${isHome ? "text-warm-cream" : "text-foreground"}`}
+              aria-label="Switch language"
+            >
+              <Globe size={18} />
+              {isHebrew ? "EN" : "עב"}
+            </Link>
+          </div>
 
           {/* Mobile toggle */}
           <button
