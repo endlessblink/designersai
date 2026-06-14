@@ -1,19 +1,28 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import ExhibitionCard from "@/components/ui/ExhibitionCard";
 
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
 
 const Index = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
     <PageLayout>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <motion.div style={{ y: heroY }} className="absolute -inset-y-[15%] inset-x-0">
           <video
             src="/videos/hero-bg.mp4"
             autoPlay
@@ -23,7 +32,7 @@ const Index = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-deep-charcoal/60" />
-        </div>
+        </motion.div>
         <div className="relative z-10 container text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -117,34 +126,7 @@ const Index = () => {
                 slug: "/exhibitions/bangkok",
               },
             ].map((ex, i) => (
-              <motion.div
-                key={ex.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-              >
-                <Link to={ex.slug} className="group block">
-                  <div className="relative overflow-hidden aspect-[4/3]">
-                    {ex.video ? (
-                      <video src={ex.video} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" autoPlay muted loop playsInline />
-                    ) : (
-                      <img
-                        src={ex.image}
-                        alt={`${ex.title} exhibition`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-deep-charcoal/20 group-hover:bg-deep-charcoal/10 transition-colors" />
-                  </div>
-                  <div className="mt-5">
-                    <h3 className="font-display text-2xl text-foreground">{ex.title}</h3>
-                    <p className="text-sm text-muted-foreground font-body mt-1">
-                      {ex.city}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
+              <ExhibitionCard key={ex.slug} ex={ex} index={i} />
             ))}
           </div>
         </div>
