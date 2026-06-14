@@ -95,6 +95,17 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Hebrew page: use Heebo for all serif (display) headings */
+  .font-heebo-headings .font-display,
+  .font-heebo-headings h1,
+  .font-heebo-headings h2,
+  .font-heebo-headings h3,
+  .font-heebo-headings h4,
+  .font-heebo-headings h5,
+  .font-heebo-headings h6 {
+    font-family: 'Heebo', system-ui, sans-serif;
+  }
 }
 
 /* Smooth scroll */
