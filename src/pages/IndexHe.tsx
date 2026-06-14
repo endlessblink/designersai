@@ -10,7 +10,7 @@ import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
 
 const IndexHe = () => {
   return (
-    <div dir="rtl" className="text-right">
+    <div dir="rtl" className="text-right font-heebo-headings">
       <PageLayout>
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
