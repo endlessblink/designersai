@@ -13,6 +13,7 @@ import Press from "./pages/Press";
 import Join from "./pages/Join";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
+import CreatorSubmission from "./pages/CreatorSubmission";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/weekly-practice" element={<WeeklyPractice />} />
           <Route path="/press" element={<Press />} />
           <Route path="/join" element={<Join />} />
+          <Route path="/creator-submission" element={<CreatorSubmission />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

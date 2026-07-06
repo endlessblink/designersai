@@ -6,6 +6,8 @@ import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import ExhibitionCard from "@/components/ui/ExhibitionCard";
+import ArtistCard from "@/components/ArtistCard";
+import { featuredArtists } from "@/data/artists";
 
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
@@ -141,21 +143,10 @@ const IndexHe = () => {
               title="רשת יוצרים הולכת וגדלה"
               description="אמנים, מעצבים ואנשי תרבות מרחבי העולם — מאוחדים בסקרנות ובעשייה יצירתית עם בינה מלאכותית."
             />
-            <div className="flex flex-wrap gap-4 mt-8">
-              {["Nataly Shafir", "Sivan Darmon Pritsker", "Gina Dawidowicz", "Maya Elav Nachshon", "Gili Comforty", "Sharon Mass", "Gilad Edelstein", "Mira Feder", "Elad Baadany Hoogervorst", "Noam Naumovsky", "Natalie Kaplan", "Ifat Kariv Gurion"].map(
-                (name, i) => (
-                  <motion.div
-                    key={name}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05, duration: 0.4 }}
-                    className="px-5 py-3 border border-border bg-card font-body text-sm text-foreground"
-                  >
-                    {name}
-                  </motion.div>
-                )
-              )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 text-left" dir="ltr">
+              {featuredArtists.map((artist, i) => (
+                <ArtistCard key={artist.slug} artist={artist} index={i} compact />
+              ))}
             </div>
             <Link
               to="/artists"
