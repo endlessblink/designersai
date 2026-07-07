@@ -9,8 +9,15 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you for reaching out! We'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      "",
+      formData.message,
+    ].join("\n");
+
+    window.location.href = `mailto:hello@designersinai.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`;
+    toast.success("Opening your email client with the message.");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,7 +72,7 @@ const Contact = () => {
               />
             </div>
             <button type="submit" className="w-full py-4 bg-foreground text-background font-body text-sm tracking-wide hover:opacity-90 transition-opacity">
-              Send Message
+              Prepare Email
             </button>
           </motion.form>
 

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { findArtistByName } from "@/data/artists";
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
 
@@ -27,7 +28,7 @@ const exhibitions = [
     slug: "bangkok",
     statement: "A cross-cultural dialogue between Southeast Asian visual traditions and AI-driven art practices. The Bangkok Edition brings Designers with AI into conversation with local creative communities.",
     website: "https://nex.hsutcc.com/",
-    artists: ["Noa Tamir", "Maya Elhav Nachson", "Sharom Mass", "Noam Neomovski", "Oren Meyuhas", "Gili Comforty", "Carin Besser", "Nataly Shafir"],
+    artists: ["Noa Tamir", "Maya Elav Nachshon", "Sharon Mass", "Noam Naumovsky", "Oren Meyuhas", "Gili Comforty", "Karin Besser", "Nataly Shafir"],
   },
 ];
 
@@ -70,11 +71,19 @@ const Exhibitions = () => {
                   <div className="mt-6">
                     <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-body mb-2">Participating Artists</p>
                     <div className="flex flex-wrap gap-2">
-                      {ex.artists.map((a) => (
-                        <span key={a} className="text-xs font-body text-foreground px-3 py-1 border border-border">
-                          {a}
-                        </span>
-                      ))}
+                      {ex.artists.map((a) => {
+                        const artist = findArtistByName(a);
+
+                        return (
+                          <Link
+                            key={a}
+                            to={artist ? `/artists#${artist.slug}` : `/creator-submission?artist=${encodeURIComponent(a)}`}
+                            className="text-xs font-body text-foreground px-3 py-1 border border-border transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                          >
+                            {a}
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                   {ex.website && (

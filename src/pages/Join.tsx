@@ -17,8 +17,22 @@ const Join = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you for your application! We will review it carefully and get back to you.");
-    setFormData({ fullName: "", country: "", email: "", portfolio: "", aiPractice: "", whyJoin: "", socialLinks: "" });
+    const body = [
+      `Full name: ${formData.fullName}`,
+      `Country: ${formData.country}`,
+      `Email: ${formData.email}`,
+      `Portfolio: ${formData.portfolio}`,
+      `Social links: ${formData.socialLinks}`,
+      "",
+      "AI practice:",
+      formData.aiPractice,
+      "",
+      "Why join:",
+      formData.whyJoin,
+    ].join("\n");
+
+    window.location.href = `mailto:hello@designersinai.com?subject=${encodeURIComponent(`Community application: ${formData.fullName}`)}&body=${encodeURIComponent(body)}`;
+    toast.success("Opening your email client with the application.");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -109,7 +123,7 @@ const Join = () => {
               type="submit"
               className="w-full py-4 bg-foreground text-background font-body text-sm tracking-wide hover:opacity-90 transition-opacity mt-8"
             >
-              Submit Application
+              Prepare Email Application
             </button>
           </motion.form>
         </section>

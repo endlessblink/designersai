@@ -75,13 +75,27 @@ export const artists: Artist[] = [
   { slug: "daniel-atzil", name: "Daniel Atzil", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "lee-aloni", name: "Lee Aloni", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "yoav-einhar", name: "יואב עינהר", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
-  { slug: "karin-besser", name: "קארין בסר", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
+  { slug: "karin-besser", name: "Karin Besser", hebrewName: "קארין בסר", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "itai-koronyo", name: "איתי קורוניו", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "ariel-eloya-k", name: "אריל אלויה ק.", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "tali-apel", name: "טלי אפל", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
 ];
 
 export const featuredArtists = artists.filter((artist) => artist.isFeatured);
+
+const artistAliases: Record<string, string> = {
+  "maya elhav nachson": "maya-elav-nachshon",
+  "sharom mass": "sharon-mass",
+  "noam neomovski": "noam-naumovsky",
+  "carin besser": "karin-besser",
+};
+
+export const findArtistByName = (name: string) => {
+  const normalizedName = name.toLowerCase();
+  const aliasSlug = artistAliases[normalizedName];
+
+  return artists.find((artist) => artist.slug === aliasSlug || artist.name.toLowerCase() === normalizedName);
+};
 
 export const getArtistInitials = (name: string) =>
   name

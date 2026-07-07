@@ -12,6 +12,7 @@ interface ArtistCardProps {
 const ArtistCard = ({ artist, index = 0, compact = false }: ArtistCardProps) => {
   return (
     <motion.article
+      id={artist.slug}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}

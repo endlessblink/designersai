@@ -8,12 +8,13 @@ import { toast } from "sonner";
 
 const CreatorSubmission = () => {
   const [searchParams] = useSearchParams();
+  const artistParam = searchParams.get("artist");
   const selectedArtist = useMemo(
-    () => artists.find((artist) => artist.slug === searchParams.get("artist")),
-    [searchParams],
+    () => artists.find((artist) => artist.slug === artistParam),
+    [artistParam],
   );
   const [formData, setFormData] = useState({
-    name: selectedArtist?.name ?? "",
+    name: selectedArtist?.name ?? artistParam ?? "",
     email: "",
     bio: "",
     portfolio: "",
