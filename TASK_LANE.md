@@ -40,6 +40,43 @@ Partial pass. The site avoids the worst AI-startup tropes: no neon gradients, no
 
 ## Implementation Slices
 
+## Task Ledger
+
+### Completed
+
+- [x] Create persistent design context in `.impeccable.md`.
+- [x] Write this lane document with critique findings and staged implementation plan.
+- [x] Add structured creator data in `src/data/artists.ts`.
+- [x] Add reusable `ArtistCard` component with image-ready placeholders.
+- [x] Replace homepage creator name chips with creator cards.
+- [x] Replace Hebrew homepage creator name chips with creator cards.
+- [x] Upgrade `/artists` from a list into a card-based creator directory.
+- [x] Add `/creator-submission` route for approved image, bio, and link submissions.
+- [x] Make artist cards link to the creator submission flow.
+- [x] Make exhibition artist tags clickable.
+- [x] Add artist-directory anchors for known creators.
+- [x] Route unknown exhibition artists to creator submission with the name prefilled.
+- [x] Convert contact form from local toast-only behavior to prepared email communication.
+- [x] Convert join form from local toast-only behavior to prepared email application.
+- [x] Push the creator-profile lane to the fork remote.
+
+### Next
+
+- [ ] Replace Weekly Practice homepage teaser with a real thumbnail, embedded video preview, or stronger editorial treatment.
+- [ ] Add approved portraits or artwork thumbnails for featured creators.
+- [ ] Add poster images for local exhibition videos.
+- [ ] Correct and verify all exhibition artist names against the final approved roster.
+- [ ] Add real creator links once supplied by the creators.
+- [ ] Add Hebrew names and Hebrew-facing labels for more creator cards.
+- [ ] Add individual creator profile pages if the directory needs deeper bios/work samples.
+
+### Deferred Until Needed
+
+- [ ] Replace mailto forms with Tally, Formspree, Sanity, or another reliable submission backend.
+- [ ] Add moderation/admin workflow for submitted creator materials.
+- [ ] Add real user accounts only if creators need self-service profile management.
+- [ ] Add CMS-backed creator and exhibition data once updates become frequent.
+
 ### Slice 1: Creator Foundation
 
 - Add `src/data/artists.ts`.
