@@ -14,6 +14,10 @@ import Join from "./pages/Join";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import CreatorSubmission from "./pages/CreatorSubmission";
+import Login from "./pages/Login";
+import ProfileDashboard from "./pages/dashboard/ProfileDashboard";
+import AdminArtists from "./pages/admin/AdminArtists";
+import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +41,14 @@ const App = () => (
           <Route path="/creator-submission" element={<CreatorSubmission />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard/profile" element={<ProfileDashboard />} />
+          <Route path="/dashboard/assets" element={<ProfileDashboard />} />
+          <Route path="/admin" element={<AdminArtists />} />
+          <Route path="/admin/artists" element={<AdminArtists />} />
+          <Route path="/admin/submissions" element={<AdminArtists />} />
+          <Route path="/admin/exhibitions" element={<AdminPlaceholder title="Exhibitions CMS" />} />
+          <Route path="/admin/weekly-practice" element={<AdminPlaceholder title="Weekly Practice CMS" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

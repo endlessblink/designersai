@@ -59,9 +59,13 @@ Partial pass. The site avoids the worst AI-startup tropes: no neon gradients, no
 - [x] Convert contact form from local toast-only behavior to prepared email communication.
 - [x] Convert join form from local toast-only behavior to prepared email application.
 - [x] Push the creator-profile lane to the fork remote.
+- [x] Add custom CMS foundation with Vercel API functions, Neon schema bootstrap, magic-link auth, creator dashboard, admin review, and Cloudinary upload support.
 
 ### Next
 
+- [ ] Create Neon project, add Vercel env vars, and run `/api/cms/bootstrap`.
+- [ ] Create Cloudinary upload preset and add Cloudinary env vars.
+- [ ] Seed or log in with the first admin email.
 - [ ] Replace Weekly Practice homepage teaser with a real thumbnail, embedded video preview, or stronger editorial treatment.
 - [ ] Add approved portraits or artwork thumbnails for featured creators.
 - [ ] Add poster images for local exhibition videos.
@@ -72,10 +76,9 @@ Partial pass. The site avoids the worst AI-startup tropes: no neon gradients, no
 
 ### Deferred Until Needed
 
-- [ ] Replace mailto forms with Tally, Formspree, Sanity, or another reliable submission backend.
-- [ ] Add moderation/admin workflow for submitted creator materials.
-- [ ] Add real user accounts only if creators need self-service profile management.
-- [ ] Add CMS-backed creator and exhibition data once updates become frequent.
+- [ ] Add richer admin sections for exhibitions and Weekly Practice.
+- [ ] Add creator-facing status history, comments, and revision comparison.
+- [ ] Add full CMS-backed exhibition and Weekly Practice editing once artist approvals are stable.
 
 ### Slice 1: Creator Foundation
 

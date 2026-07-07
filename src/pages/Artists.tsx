@@ -1,11 +1,19 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ArtistCard from "@/components/ArtistCard";
-import { artists } from "@/data/artists";
+import { Artist, artists as fallbackArtists } from "@/data/artists";
+import { fetchPublishedArtists } from "@/lib/cms";
 const Artists = () => {
+  const [artists, setArtists] = useState<Artist[]>(fallbackArtists);
+
+  useEffect(() => {
+    fetchPublishedArtists().then(setArtists);
+  }, []);
+
   return (
     <PageLayout>
       <div className="pt-24 md:pt-32">

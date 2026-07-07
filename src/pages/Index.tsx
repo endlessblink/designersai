@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
@@ -7,7 +7,8 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import ExhibitionCard from "@/components/ui/ExhibitionCard";
 import ArtistCard from "@/components/ArtistCard";
-import { featuredArtists } from "@/data/artists";
+import { Artist, featuredArtists as fallbackFeaturedArtists } from "@/data/artists";
+import { fetchFeaturedArtists } from "@/lib/cms";
 
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
@@ -19,6 +20,11 @@ const Index = () => {
     offset: ["start start", "end start"],
   });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const [featuredArtists, setFeaturedArtists] = useState<Artist[]>(fallbackFeaturedArtists);
+
+  useEffect(() => {
+    fetchFeaturedArtists().then(setFeaturedArtists);
+  }, []);
 
   return (
     <PageLayout>
