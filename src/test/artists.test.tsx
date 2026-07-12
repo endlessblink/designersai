@@ -39,4 +39,17 @@ describe("artist profile images", () => {
 
     expect(screen.getByRole("img", { name: "Nataly Shafir" })).toHaveClass("object-contain");
   });
+
+  it("renders profile controls in Hebrew when used on the Hebrew homepage", () => {
+    const artist = artists.find((candidate) => candidate.slug === "nataly-shafir")!;
+    render(
+      <MemoryRouter>
+        <ArtistCard artist={artist} locale="he" />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("מייסדת ומנהלת אמנותית / ישראל")).toBeInTheDocument();
+    expect(screen.getByText("תמונת פרופיל מאושרת")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /עדכון הפרופיל/ })).toBeInTheDocument();
+  });
 });

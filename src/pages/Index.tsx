@@ -129,7 +129,7 @@ const Index = () => {
             title="International Presence"
             description="Our exhibitions bring AI art into conversation with local culture, audience, and space."
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: "Almost Real",
@@ -144,6 +144,14 @@ const Index = () => {
                 image: exhibitionBangkok,
                 video: "/videos/living-ink.mp4",
                 slug: "/exhibitions/bangkok",
+              },
+              {
+                title: "Too Much Manuela",
+                city: "Community event",
+                image: exhibitionTelAviv,
+                video: "/videos/too-much-manuela.mp4",
+                slug: "#exhibitions",
+                containMedia: true,
               },
             ].map((ex, i) => (
               <ExhibitionCard key={ex.slug} ex={ex} index={i} />

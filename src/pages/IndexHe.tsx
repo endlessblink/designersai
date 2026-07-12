@@ -130,7 +130,7 @@ const IndexHe = () => {
               title="נוכחות בינלאומית"
               description="התערוכות שלנו מביאות את אמנות ה-AI לדיאלוג עם התרבות, הקהל והמרחב המקומיים."
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   title: "כמעט אמיתי",
@@ -145,6 +145,14 @@ const IndexHe = () => {
                   image: exhibitionBangkok,
                   video: "/videos/living-ink.mp4",
                   slug: "/exhibitions/bangkok",
+                },
+                {
+                  title: "Too Much Manuela",
+                  city: "אירוע קהילתי",
+                  image: exhibitionTelAviv,
+                  video: "/videos/too-much-manuela.mp4",
+                  slug: "#exhibitions",
+                  containMedia: true,
                 },
               ].map((ex, i) => (
                 <ExhibitionCard key={ex.slug} ex={ex} index={i} />
@@ -163,7 +171,7 @@ const IndexHe = () => {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 text-left" dir="ltr">
               {featuredArtists.map((artist, i) => (
-                <ArtistCard key={artist.slug} artist={artist} index={i} compact />
+                <ArtistCard key={artist.slug} artist={artist} index={i} compact locale="he" />
               ))}
             </div>
             <Link

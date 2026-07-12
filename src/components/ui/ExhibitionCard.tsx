@@ -8,6 +8,7 @@ export interface ExhibitionItem {
   image: string;
   video?: string;
   slug: string;
+  containMedia?: boolean;
 }
 
 const ExhibitionCard = ({ ex, index }: { ex: ExhibitionItem; index: number }) => {
@@ -31,7 +32,7 @@ const ExhibitionCard = ({ ex, index }: { ex: ExhibitionItem; index: number }) =>
             {ex.video ? (
               <video
                 src={ex.video}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${ex.containMedia ? "object-contain" : "object-cover"}`}
                 autoPlay
                 muted
                 loop

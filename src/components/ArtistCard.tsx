@@ -7,9 +7,16 @@ interface ArtistCardProps {
   artist: Artist;
   index?: number;
   compact?: boolean;
+  locale?: "en" | "he";
 }
 
-const ArtistCard = ({ artist, index = 0, compact = false }: ArtistCardProps) => {
+const ArtistCard = ({ artist, index = 0, compact = false, locale = "en" }: ArtistCardProps) => {
+  const isHebrew = locale === "he";
+  const title = isHebrew
+    ? artist.isFounder ? "מייסדת ומנהלת אמנותית" : "אמנית בקהילה"
+    : artist.title;
+  const location = isHebrew && artist.location === "Israel" ? "ישראל" : artist.location;
+
   return (
     <motion.article
       id={artist.slug}
@@ -41,13 +48,13 @@ const ArtistCard = ({ artist, index = 0, compact = false }: ArtistCardProps) => 
             </div>
             {artist.isFounder && (
               <span className="shrink-0 border border-cinematic-violet/30 px-2 py-1 text-[10px] uppercase tracking-[0.15em] text-cinematic-violet">
-                Founder
+                {isHebrew ? "מייסדת" : "Founder"}
               </span>
             )}
           </div>
 
           <p className="mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground font-body">
-            {[artist.title, artist.location].filter(Boolean).join(" / ")}
+            {[title, location].filter(Boolean).join(" / ")}
           </p>
 
           {!compact && (
@@ -58,13 +65,13 @@ const ArtistCard = ({ artist, index = 0, compact = false }: ArtistCardProps) => 
 
           <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
             <span className="text-xs text-muted-foreground font-body">
-              {artist.image ? "Profile image approved" : "Images pending"}
+              {artist.image ? (isHebrew ? "תמונת פרופיל מאושרת" : "Profile image approved") : (isHebrew ? "התמונה תתווסף בקרוב" : "Images pending")}
             </span>
             <Link
               to={`/creator-submission?artist=${artist.slug}`}
               className="inline-flex items-center gap-1 text-xs font-body text-foreground transition-opacity hover:opacity-70"
             >
-              Update profile <ArrowUpRight size={13} />
+              {isHebrew ? "עדכון הפרופיל" : "Update profile"} <ArrowUpRight size={13} />
             </Link>
           </div>
         </div>

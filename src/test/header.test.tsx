@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 describe("Header", () => {
   it("renders a dedicated RTL Hebrew navigation on the Hebrew homepage", () => {
@@ -20,5 +21,18 @@ describe("Header", () => {
     expect(within(desktopNav).getByRole("link", { name: "אמנים" })).toHaveAttribute("href", "#artists");
     expect(within(desktopNav).getByRole("link", { name: "הצטרפות" })).toHaveAttribute("href", "#join");
     expect(within(desktopNav).getByRole("link", { name: "English" })).toHaveAttribute("href", "/en");
+  });
+
+  it("renders the Hebrew footer in RTL on the default homepage", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>,
+    );
+
+    const footer = screen.getByRole("contentinfo");
+    expect(footer).toHaveAttribute("dir", "rtl");
+    expect(within(footer).getByText("גלו")).toBeInTheDocument();
+    expect(within(footer).getByRole("link", { name: "אמני הקהילה" })).toHaveAttribute("href", "/#artists");
   });
 });
