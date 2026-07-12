@@ -26,6 +26,18 @@ const IndexHe = () => {
     fetchFeaturedArtists().then(setFeaturedArtists);
   }, []);
 
+  useEffect(() => {
+    const previousLang = document.documentElement.lang;
+    const previousDir = document.documentElement.dir;
+    document.documentElement.lang = "he";
+    document.documentElement.dir = "rtl";
+
+    return () => {
+      document.documentElement.lang = previousLang;
+      document.documentElement.dir = previousDir;
+    };
+  }, []);
+
   return (
     <div dir="rtl" className="text-right font-heebo-headings">
       <PageLayout>
@@ -99,7 +111,7 @@ const IndexHe = () => {
         </section>
 
         {/* Intro */}
-        <AnimatedSection className="py-24 md:py-32">
+        <AnimatedSection id="about" className="scroll-mt-20 py-24 md:py-32">
           <div className="container max-w-3xl text-center">
             <p className="font-display text-2xl md:text-3xl text-foreground leading-relaxed font-light italic">
               "אנו מאמינים שהבינה המלאכותית אינה מחליפה את האמן — היא מרחיבה את מה שאמנות יכולה להיות."
@@ -111,7 +123,7 @@ const IndexHe = () => {
         </AnimatedSection>
 
         {/* Featured Exhibitions */}
-        <section className="py-16 md:py-24 bg-secondary/50">
+        <section id="exhibitions" className="scroll-mt-20 py-16 md:py-24 bg-secondary/50">
           <div className="container">
             <SectionHeading
               label="תערוכות"
@@ -142,7 +154,7 @@ const IndexHe = () => {
         </section>
 
         {/* Community Preview */}
-        <AnimatedSection className="py-24 md:py-32">
+        <AnimatedSection id="artists" className="scroll-mt-20 py-24 md:py-32">
           <div className="container">
             <SectionHeading
               label="קהילה"
@@ -164,7 +176,7 @@ const IndexHe = () => {
         </AnimatedSection>
 
         {/* Weekly Practice */}
-        <section className="py-24 md:py-32 bg-deep-charcoal">
+        <section id="weekly-practice" className="scroll-mt-20 py-24 md:py-32 bg-deep-charcoal">
           <div className="container">
             <SectionHeading
               light
@@ -184,7 +196,7 @@ const IndexHe = () => {
         </section>
 
         {/* Press Highlight */}
-        <AnimatedSection className="py-24 md:py-32">
+        <AnimatedSection id="press" className="scroll-mt-20 py-24 md:py-32">
           <div className="container">
             <SectionHeading
               label="עיתונות ומדיה"
@@ -221,7 +233,7 @@ const IndexHe = () => {
         </AnimatedSection>
 
         {/* Join CTA */}
-        <section className="py-24 md:py-32 bg-secondary/50">
+        <section id="join" className="scroll-mt-20 py-24 md:py-32 bg-secondary/50">
           <div className="container text-center max-w-2xl">
             <AnimatedSection>
               <SectionHeading

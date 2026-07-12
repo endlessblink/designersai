@@ -22,6 +22,7 @@ export const artists: Artist[] = [
     title: "Founder & Artistic Director",
     location: "Israel",
     bio: "Designer, creative director, and cultural organizer building an international platform for AI-driven creative practice.",
+    image: "/images/artists/nataly-shafir.png",
     isFounder: true,
     isFeatured: true,
   },
@@ -44,6 +45,7 @@ export const artists: Artist[] = [
     name: "Maya Elav Nachshon",
     title: "Community Artist",
     bio: "Community artist contributing to the network's ongoing exploration of AI as an artistic medium.",
+    image: "/images/artists/maya-elav-nachshon.png",
     isFeatured: true,
   },
   {
@@ -63,9 +65,9 @@ export const artists: Artist[] = [
   { slug: "gilad-edelstein", name: "Gilad Edelstein", title: "Community Artist", bio: "Community artist exploring emerging AI tools through creative practice." },
   { slug: "mira-feder", name: "Mira Feder", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "elad-baadany-hoogervorst", name: "Elad Baadany Hoogervorst", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
-  { slug: "noam-naumovsky", name: "Noam Naumovsky", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
+  { slug: "noam-naumovsky", name: "Noam Naumovsky", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/noam-naumovsky.png", isFeatured: true },
   { slug: "natalie-kaplan", name: "Natalie Kaplan", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
-  { slug: "ifat-kariv-gurion", name: "Ifat Kariv Gurion", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
+  { slug: "ifat-kariv-gurion", name: "Ifat Kariv Gurion", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/ifat-kariv-gurion.png", isFeatured: true },
   { slug: "maya-pinto-koren", name: "Maya Pinto-Koren", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "noa-tamir", name: "Noa Tamir", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "inbal-weisman", name: "Inbal Weisman", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
@@ -79,9 +81,13 @@ export const artists: Artist[] = [
   { slug: "itai-koronyo", name: "איתי קורוניו", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "ariel-eloya-k", name: "אריל אלויה ק.", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "tali-apel", name: "טלי אפל", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
+  { slug: "adi-erlich", name: "Adi Erlich", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/adi-erlich.png", isFeatured: true },
 ];
 
-export const featuredArtists = artists.filter((artist) => artist.isFeatured);
+export const orderArtistsWithImagesFirst = (artistList: Artist[]) =>
+  [...artistList].sort((a, b) => Number(Boolean(b.image)) - Number(Boolean(a.image)));
+
+export const featuredArtists = orderArtistsWithImagesFirst(artists.filter((artist) => artist.isFeatured));
 
 const artistAliases: Record<string, string> = {
   "maya elhav nachson": "maya-elav-nachshon",

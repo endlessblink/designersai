@@ -1,4 +1,4 @@
-import { Artist, artists as fallbackArtists, featuredArtists as fallbackFeaturedArtists } from "@/data/artists";
+import { Artist, artists as fallbackArtists, featuredArtists as fallbackFeaturedArtists, orderArtistsWithImagesFirst } from "@/data/artists";
 
 export interface CmsUser {
   email: string;
@@ -61,7 +61,16 @@ export const logout = async () =>
 export const fetchPublishedArtists = async (): Promise<Artist[]> => {
   try {
     const data = await request<{ artists: Artist[] }>("/api/cms/artists");
-    return data.artists.length ? data.artists : fallbackArtists;
+    if (!data.artists.length) return fallbackArtists;
+
+    return data.artists.map((artist) => {
+      const fallback = fallbackArtists.find((candidate) => candidate.slug === artist.slug);
+      return {
+        ...artist,
+        image: artist.image || fallback?.image,
+        isFeatured: artist.isFeatured ?? fallback?.isFeatured,
+      };
+    });
   } catch {
     return fallbackArtists;
   }
@@ -70,7 +79,7 @@ export const fetchPublishedArtists = async (): Promise<Artist[]> => {
 export const fetchFeaturedArtists = async (): Promise<Artist[]> => {
   const artists = await fetchPublishedArtists();
   const featured = artists.filter((artist) => artist.isFeatured);
-  return featured.length ? featured : fallbackFeaturedArtists;
+  return featured.length ? orderArtistsWithImagesFirst(featured) : fallbackFeaturedArtists;
 };
 
 export const submitArtistDraft = async (draft: Partial<Artist> & { artistSlug?: string }) =>

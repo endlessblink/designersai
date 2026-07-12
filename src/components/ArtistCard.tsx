@@ -20,9 +20,9 @@ const ArtistCard = ({ artist, index = 0, compact = false }: ArtistCardProps) => 
       className="group border border-border bg-card/70 transition-colors hover:border-foreground/30"
     >
       <div className={compact ? "p-4" : "p-5"}>
-        <div className="aspect-[4/3] overflow-hidden bg-secondary">
+        <div className="aspect-[4/5] overflow-hidden bg-secondary">
           {artist.image ? (
-            <img src={artist.image} alt={artist.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+            <img src={artist.image} alt={artist.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-muted-foreground">
               <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-background/50">

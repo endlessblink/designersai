@@ -26,6 +26,18 @@ const Index = () => {
     fetchFeaturedArtists().then(setFeaturedArtists);
   }, []);
 
+  useEffect(() => {
+    const previousLang = document.documentElement.lang;
+    const previousDir = document.documentElement.dir;
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+
+    return () => {
+      document.documentElement.lang = previousLang;
+      document.documentElement.dir = previousDir;
+    };
+  }, []);
+
   return (
     <PageLayout>
       {/* Hero Section */}
