@@ -33,15 +33,21 @@ describe("artist profile images", () => {
     ["maya-elav-nachshon", "/images/artists/maya-elav-nachshon.png"],
     ["ifat-kariv-gurion", "/images/artists/ifat-kariv-gurion.png"],
     ["adi-erlich", "/images/artists/adi-erlich.png"],
-    ["noam-naumovsky", "/images/artists/noam-naumovsky.png"],
+    ["noam-naumovsky", "/images/artists/noam-naumovsky.jpg"],
   ])("assigns the approved portrait to %s", (slug, image) => {
     expect(artists.find((artist) => artist.slug === slug)?.image).toBe(image);
+  });
+
+  it("assigns Miri Pinko's approved portrait", () => {
+    expect(artists.find((artist) => artist.slug === "miri-pinko")?.image).toBe(
+      "/images/artists/miri-pinko.jpg",
+    );
   });
 
   it("features every artist with an approved portrait on the homepage", () => {
     const artistsWithImages = artists.filter((artist) => artist.image);
 
-    expect(artistsWithImages).toHaveLength(5);
+    expect(artistsWithImages).toHaveLength(6);
     expect(artistsWithImages.every((artist) => artist.isFeatured)).toBe(true);
   });
 
@@ -55,7 +61,7 @@ describe("artist profile images", () => {
   it("places approved portraits before image-pending profiles", () => {
     const firstImagePendingIndex = featuredArtists.findIndex((artist) => !artist.image);
 
-    expect(firstImagePendingIndex).toBe(5);
+    expect(firstImagePendingIndex).toBe(6);
     expect(featuredArtists.slice(0, firstImagePendingIndex).every((artist) => artist.image)).toBe(true);
   });
 
@@ -68,6 +74,17 @@ describe("artist profile images", () => {
     );
 
     expect(screen.getByRole("img", { name: "Nataly Shafir" })).toHaveClass("object-contain");
+  });
+
+  it("fills the portrait frame for Noam's landscape event photo", () => {
+    const artist = artists.find((candidate) => candidate.slug === "noam-naumovsky")!;
+    render(
+      <MemoryRouter>
+        <ArtistCard artist={artist} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("img", { name: "Noam Naumovsky" })).toHaveClass("object-cover");
   });
 
   it("connects an artist portrait and name to the dedicated profile", () => {

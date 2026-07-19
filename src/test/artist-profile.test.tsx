@@ -53,6 +53,16 @@ describe("artist profile routes", () => {
     expect(screen.getByText("Community Lead")).toBeInTheDocument();
   });
 
+  it("fills Noam's profile frame with the supplied event photo", async () => {
+    window.history.pushState({}, "", "/artists/noam-naumovsky");
+
+    render(<App />);
+
+    const portrait = await screen.findByRole("img", { name: "Noam Naumovsky" });
+    expect(portrait).toHaveAttribute("src", "/images/artists/noam-naumovsky.jpg");
+    expect(portrait).toHaveClass("object-cover");
+  });
+
   it("keeps Miri Pinko available when the CMS returns a partial roster", async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
@@ -67,7 +77,10 @@ describe("artist profile routes", () => {
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());
     expect(await screen.findByRole("heading", { name: "Miri Pinko" })).toBeInTheDocument();
-    expect(screen.getByText("MP")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Miri Pinko" })).toHaveAttribute(
+      "src",
+      "/images/artists/miri-pinko.jpg",
+    );
     expect(screen.getByText("Community Lead")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Update profile" })).toHaveAttribute(
       "href",

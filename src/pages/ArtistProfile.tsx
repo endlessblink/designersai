@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, ExternalLink, Image } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
-import { Artist, artists as fallbackArtists, getArtistDisplayTitle, getArtistInitials } from "@/data/artists";
+import { Artist, artists as fallbackArtists, getArtistDisplayTitle, getArtistImageFitClass, getArtistInitials } from "@/data/artists";
 import { fetchPublishedArtists } from "@/lib/cms";
 
 const ArtistProfile = () => {
@@ -66,7 +66,7 @@ const ArtistProfile = () => {
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-16">
             <div className="aspect-[4/5] overflow-hidden bg-secondary">
               {artist.image ? (
-                <img src={artist.image} alt={artist.name} className="h-full w-full object-contain" />
+                <img src={artist.image} alt={artist.name} className={`h-full w-full ${getArtistImageFitClass(artist)}`} />
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-4 text-muted-foreground">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full border border-border bg-background/50">

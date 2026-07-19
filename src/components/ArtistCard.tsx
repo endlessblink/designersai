@@ -1,7 +1,7 @@
 import { ArrowUpRight, Image } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Artist, getArtistDisplayTitle, getArtistInitials, getArtistProfilePath } from "@/data/artists";
+import { Artist, getArtistDisplayTitle, getArtistImageFitClass, getArtistInitials, getArtistProfilePath } from "@/data/artists";
 
 interface ArtistCardProps {
   artist: Artist;
@@ -32,7 +32,7 @@ const ArtistCard = ({ artist, index = 0, compact = false, locale = "en" }: Artis
           className="block aspect-[4/5] overflow-hidden bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           {artist.image ? (
-            <img src={artist.image} alt={artist.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+            <img src={artist.image} alt={artist.name} className={`h-full w-full ${getArtistImageFitClass(artist)} transition-transform duration-500 group-hover:scale-[1.02]`} />
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-muted-foreground">
               <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-background/50">

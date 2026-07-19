@@ -6,6 +6,7 @@ export interface Artist {
   location?: string;
   bio: string;
   image?: string;
+  imageFit?: "contain" | "cover";
   links?: {
     label: string;
     href: string;
@@ -65,7 +66,7 @@ export const artists: Artist[] = [
   { slug: "gilad-edelstein", name: "Gilad Edelstein", title: "Community Artist", bio: "Community artist exploring emerging AI tools through creative practice." },
   { slug: "mira-feder", name: "Mira Feder", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "elad-baadany-hoogervorst", name: "Elad Baadany Hoogervorst", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
-  { slug: "noam-naumovsky", name: "Noam Naumovsky", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/noam-naumovsky.png", isFeatured: true },
+  { slug: "noam-naumovsky", name: "Noam Naumovsky", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/noam-naumovsky.jpg", imageFit: "cover", isFeatured: true },
   { slug: "natalie-kaplan", name: "Natalie Kaplan", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "ifat-kariv-gurion", name: "Ifat Kariv Gurion", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/ifat-kariv-gurion.png", isFeatured: true },
   { slug: "maya-pinto-koren", name: "Maya Pinto-Koren", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
@@ -82,7 +83,7 @@ export const artists: Artist[] = [
   { slug: "ariel-eloya-k", name: "אריל אלויה ק.", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "tali-apel", name: "טלי אפל", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "adi-erlich", name: "Adi Erlich", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/adi-erlich.png", isFeatured: true },
-  { slug: "miri-pinko", name: "Miri Pinko", title: "Community Lead", bio: "Community lead supporting the Designers with AI network." },
+  { slug: "miri-pinko", name: "Miri Pinko", title: "Community Lead", bio: "Community lead supporting the Designers with AI network.", image: "/images/artists/miri-pinko.jpg", isFeatured: true },
 ];
 
 export const orderArtistsWithImagesFirst = (artistList: Artist[]) =>
@@ -91,6 +92,8 @@ export const orderArtistsWithImagesFirst = (artistList: Artist[]) =>
 export const featuredArtists = orderArtistsWithImagesFirst(artists.filter((artist) => artist.isFeatured));
 
 export const getArtistProfilePath = (slug: string) => `/artists/${slug}`;
+
+export const getArtistImageFitClass = (artist: Artist) => artist.imageFit === "cover" ? "object-cover" : "object-contain";
 
 export const founderSlug = "nataly-shafir";
 
