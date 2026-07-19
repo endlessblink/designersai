@@ -89,6 +89,8 @@ export const orderArtistsWithImagesFirst = (artistList: Artist[]) =>
 
 export const featuredArtists = orderArtistsWithImagesFirst(artists.filter((artist) => artist.isFeatured));
 
+export const getArtistProfilePath = (slug: string) => `/artists/${slug}`;
+
 const artistAliases: Record<string, string> = {
   "maya elhav nachson": "maya-elav-nachshon",
   "sharom mass": "sharon-mass",

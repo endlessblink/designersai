@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { findArtistByName } from "@/data/artists";
+import { findArtistByName, getArtistProfilePath } from "@/data/artists";
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
 
@@ -77,7 +77,7 @@ const Exhibitions = () => {
                         return (
                           <Link
                             key={a}
-                            to={artist ? `/artists#${artist.slug}` : `/creator-submission?artist=${encodeURIComponent(a)}`}
+                            to={artist ? getArtistProfilePath(artist.slug) : `/creator-submission?artist=${encodeURIComponent(a)}`}
                             className="text-xs font-body text-foreground px-3 py-1 border border-border transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
                           >
                             {a}

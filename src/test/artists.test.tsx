@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ArtistCard from "@/components/ArtistCard";
 import { artists, featuredArtists } from "@/data/artists";
+import Exhibitions from "@/pages/Exhibitions";
 
 describe("artist profile images", () => {
   it.each([
@@ -20,6 +23,13 @@ describe("artist profile images", () => {
 
     expect(artistsWithImages).toHaveLength(5);
     expect(artistsWithImages.every((artist) => artist.isFeatured)).toBe(true);
+  });
+
+  it("keeps every approved local portrait connected to a real image file", () => {
+    const localImages = artists.flatMap((artist) => artist.image?.startsWith("/") ? [artist.image] : []);
+
+    expect(localImages.length).toBeGreaterThan(0);
+    expect(localImages.every((image) => existsSync(join(process.cwd(), "public", image)))).toBe(true);
   });
 
   it("places approved portraits before image-pending profiles", () => {
@@ -40,6 +50,21 @@ describe("artist profile images", () => {
     expect(screen.getByRole("img", { name: "Nataly Shafir" })).toHaveClass("object-contain");
   });
 
+  it("connects an artist portrait and name to the dedicated profile", () => {
+    const artist = artists.find((candidate) => candidate.slug === "nataly-shafir")!;
+    render(
+      <MemoryRouter>
+        <ArtistCard artist={artist} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("link", { name: "View Nataly Shafir profile image" })).toHaveAttribute(
+      "href",
+      "/artists/nataly-shafir",
+    );
+    expect(screen.getByRole("link", { name: "Nataly Shafir" })).toHaveAttribute("href", "/artists/nataly-shafir");
+  });
+
   it("renders profile controls in Hebrew when used on the Hebrew homepage", () => {
     const artist = artists.find((candidate) => candidate.slug === "nataly-shafir")!;
     render(
@@ -51,5 +76,22 @@ describe("artist profile images", () => {
     expect(screen.getByText("מייסדת ומנהלת אמנותית / ישראל")).toBeInTheDocument();
     expect(screen.getByText("תמונת פרופיל מאושרת")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /עדכון הפרופיל/ })).toBeInTheDocument();
+  });
+
+  it("connects known exhibition artists to profiles and keeps the submission fallback for unknown artists", () => {
+    render(
+      <MemoryRouter>
+        <Exhibitions />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("link", { name: "Maya Elav Nachshon" })).toHaveAttribute(
+      "href",
+      "/artists/maya-elav-nachshon",
+    );
+    expect(screen.getByRole("link", { name: "David Chen" })).toHaveAttribute(
+      "href",
+      "/creator-submission?artist=David%20Chen",
+    );
   });
 });

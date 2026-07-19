@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import IndexHe from "./pages/IndexHe";
 import About from "./pages/About";
 import Artists from "./pages/Artists";
+import ArtistProfile from "./pages/ArtistProfile";
 import Exhibitions from "./pages/Exhibitions";
 import WeeklyPractice from "./pages/WeeklyPractice";
 import Press from "./pages/Press";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/he" element={<IndexHe />} />
           <Route path="/about" element={<About />} />
           <Route path="/artists" element={<Artists />} />
+          <Route path="/artists/:slug" element={<ArtistProfile />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
           <Route path="/exhibitions/:slug" element={<Exhibitions />} />
           <Route path="/weekly-practice" element={<WeeklyPractice />} />

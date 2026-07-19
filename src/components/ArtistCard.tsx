@@ -1,7 +1,7 @@
 import { ArrowUpRight, Image } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Artist, getArtistInitials } from "@/data/artists";
+import { Artist, getArtistInitials, getArtistProfilePath } from "@/data/artists";
 
 interface ArtistCardProps {
   artist: Artist;
@@ -16,6 +16,7 @@ const ArtistCard = ({ artist, index = 0, compact = false, locale = "en" }: Artis
     ? artist.isFounder ? "מייסדת ומנהלת אמנותית" : "אמנית בקהילה"
     : artist.title;
   const location = isHebrew && artist.location === "Israel" ? "ישראל" : artist.location;
+  const profilePath = getArtistProfilePath(artist.slug);
 
   return (
     <motion.article
@@ -27,7 +28,11 @@ const ArtistCard = ({ artist, index = 0, compact = false, locale = "en" }: Artis
       className="group border border-border bg-card/70 transition-colors hover:border-foreground/30"
     >
       <div className={compact ? "p-4" : "p-5"}>
-        <div className="aspect-[4/5] overflow-hidden bg-secondary">
+        <Link
+          to={profilePath}
+          aria-label={`View ${artist.name} profile image`}
+          className="block aspect-[4/5] overflow-hidden bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
           {artist.image ? (
             <img src={artist.image} alt={artist.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
           ) : (
@@ -38,12 +43,16 @@ const ArtistCard = ({ artist, index = 0, compact = false, locale = "en" }: Artis
               <span className="font-display text-2xl text-foreground/50">{getArtistInitials(artist.name)}</span>
             </div>
           )}
-        </div>
+        </Link>
 
         <div className={compact ? "mt-4" : "mt-5"}>
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h3 className="font-display text-xl leading-tight text-foreground">{artist.name}</h3>
+              <h3 className="font-display text-xl leading-tight text-foreground">
+                <Link to={profilePath} className="transition-opacity hover:opacity-70">
+                  {artist.name}
+                </Link>
+              </h3>
               {artist.hebrewName && <p className="mt-1 text-sm text-muted-foreground font-body">{artist.hebrewName}</p>}
             </div>
             {artist.isFounder && (
