@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Image } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import {
   Artist,
   artists as fallbackArtists,
@@ -11,6 +11,7 @@ import {
   getArtistDisplayTitle,
   getArtistInitials,
   getArtistProfilePath,
+  isCommunityLead,
 } from "@/data/artists";
 
 interface HomepageCommunityProps {
@@ -18,12 +19,10 @@ interface HomepageCommunityProps {
   locale?: "en" | "he";
 }
 
-const tagStyles = [
-  "text-base md:text-lg",
-  "text-lg md:text-2xl",
-  "text-sm md:text-base",
-  "text-base md:text-xl",
-];
+const splitIntoColumns = (artists: Artist[], columnCount: number) =>
+  Array.from({ length: Math.min(columnCount, artists.length) }, (_, columnIndex) =>
+    artists.filter((_, artistIndex) => artistIndex % columnCount === columnIndex),
+  );
 
 const HomepageCommunity = ({ artists, locale = "en" }: HomepageCommunityProps) => {
   const isHebrew = locale === "he";
@@ -41,48 +40,66 @@ const HomepageCommunity = ({ artists, locale = "en" }: HomepageCommunityProps) =
     return artist ? [artist] : [];
   });
   const roster = [...resolvedArtists.values()].filter((artist) => artist.slug !== founderSlug);
+  const communityArtistsWithImages = roster.filter((artist) => artist.image && !isCommunityLead(artist.slug));
+  const temporaryShowcaseArtists = communityLeads.filter((artist) => artist.image);
+  const showcaseArtists = communityArtistsWithImages.length > 0 ? communityArtistsWithImages : temporaryShowcaseArtists;
   const Arrow = isHebrew ? ArrowLeft : ArrowRight;
+
+  const renderShowcaseColumns = (columnCount: number, className: string) => (
+    <div
+      className={`${className} max-h-[740px] gap-5 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)] motion-reduce:max-h-none motion-reduce:overflow-visible motion-reduce:[mask-image:none]`}
+    >
+      {splitIntoColumns(showcaseArtists, columnCount).map((columnArtists, index) => (
+        <TestimonialsColumn
+          key={`${columnCount}-${index}`}
+          artists={columnArtists}
+          duration={[17, 21, 19][index]}
+          locale={locale}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <>
-      <AnimatedSection id="founder" className="scroll-mt-20 bg-deep-charcoal py-24 text-warm-cream md:py-32">
+      <AnimatedSection id="founder" className="scroll-mt-20 bg-deep-charcoal py-16 text-warm-cream md:py-20">
         <div className="container">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
+          <div className="grid items-center gap-8 md:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:gap-10 lg:gap-14">
+            <div className="mx-auto w-full max-w-sm md:mx-0">
               <Link
                 to={getArtistProfilePath(founder.slug)}
                 aria-label={founder.name}
                 className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-cream/80 focus-visible:ring-offset-4 focus-visible:ring-offset-deep-charcoal"
               >
-                <div className="aspect-[4/5] overflow-hidden bg-warm-cream/5">
+                <div className="aspect-[4/3] max-w-sm overflow-hidden bg-warm-cream/5">
                   <img
                     src={founder.image}
                     alt={founder.name}
-                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
               </Link>
             </div>
 
-            <div className="lg:col-span-6 lg:col-start-7">
+            <div className="max-w-2xl">
               <span className="text-xs uppercase tracking-[0.25em] text-warm-cream/50">
                 {isHebrew ? "מייסדת" : "Founder"}
               </span>
-              <h2 className="mt-4 font-display text-4xl font-medium leading-tight md:text-6xl">
+              <h2 className="mt-3 font-display text-3xl font-medium leading-tight md:text-4xl">
                 {isHebrew ? "מייסדת ומנהלת אמנותית" : "Founder & Artistic Director"}
               </h2>
               <Link
                 to={getArtistProfilePath(founder.slug)}
-                className="mt-8 inline-block font-display text-2xl text-warm-cream transition-opacity hover:opacity-70"
+                className="mt-5 inline-block font-display text-xl text-warm-cream transition-opacity hover:opacity-70 md:text-2xl"
               >
                 {isHebrew && founder.hebrewName ? founder.hebrewName : founder.name}
               </Link>
-              <p className="mt-5 max-w-xl font-body text-base font-light leading-relaxed text-warm-cream/65 md:text-lg">
+              <p className="mt-3 max-w-xl font-body text-sm font-light leading-relaxed text-warm-cream/65 md:text-base">
                 {founder.bio}
               </p>
               <Link
                 to={getArtistProfilePath(founder.slug)}
-                className="mt-8 inline-flex items-center gap-2 border-b border-warm-cream/30 pb-1 text-sm text-warm-cream transition-colors hover:border-warm-cream"
+                className="mt-5 inline-flex items-center gap-2 border-b border-warm-cream/30 pb-1 text-sm text-warm-cream transition-colors hover:border-warm-cream"
               >
                 {isHebrew ? "לפרופיל המלא" : "View full profile"} <Arrow size={15} />
               </Link>
@@ -145,54 +162,40 @@ const HomepageCommunity = ({ artists, locale = "en" }: HomepageCommunityProps) =
         </div>
       </AnimatedSection>
 
-      <AnimatedSection id="artists" className="scroll-mt-20 py-24 md:py-32">
-        <div className="container">
-          <SectionHeading
-            label={isHebrew ? "הקהילה המלאה" : "The full community"}
-            title={isHebrew ? "כל האמנים" : "All Artists"}
-            description={
-              isHebrew
-                ? "רשת בינלאומית של אמנים, מעצבים ואנשי תרבות החוקרים בינה מלאכותית כמדיום יצירתי."
-                : "An international roster of artists, designers, and cultural practitioners exploring AI as a creative medium."
-            }
-          />
+      {showcaseArtists.length > 0 && (
+        <AnimatedSection id="artists" className="scroll-mt-20 py-16 md:py-32">
+          <div className="container">
+            <SectionHeading
+              label={isHebrew ? "אמני הקהילה" : "Artist showcase"}
+              title={isHebrew ? "יוצרים בקהילה" : "Community Artists"}
+              description={
+                isHebrew
+                  ? "רשת בינלאומית של אמנים, מעצבים ואנשי תרבות החוקרים בינה מלאכותית כמדיום יצירתי."
+                  : "An international roster of artists, designers, and cultural practitioners exploring AI as a creative medium."
+              }
+            />
 
-          <ol
-            aria-label={isHebrew ? "כל האמנים" : "All artists"}
-            className="flex flex-wrap items-baseline gap-x-3 gap-y-4 border-y border-border py-8 md:gap-x-4 md:gap-y-5 md:py-10"
-            dir={isHebrew ? "rtl" : "ltr"}
-          >
-            {roster.map((artist, index) => (
-              <motion.li
-                key={artist.slug}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: Math.min(index * 0.025, 0.3) }}
-                className={index % 5 === 1 ? "md:translate-y-2" : index % 7 === 3 ? "md:-translate-y-1" : ""}
-              >
-                <Link
-                  to={getArtistProfilePath(artist.slug)}
-                  aria-label={artist.name}
-                  className={`group inline-flex items-start gap-2 border border-border px-4 py-3 font-display text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${tagStyles[index % tagStyles.length]}`}
-                >
-                  <span aria-hidden="true" className="font-body text-[9px] tracking-[0.12em] opacity-45 group-hover:opacity-70">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <bdi dir="auto">{artist.name}</bdi>
-                </Link>
-              </motion.li>
-            ))}
-          </ol>
+            <div aria-label={isHebrew ? "אמני הקהילה" : "Community artists"} dir={isHebrew ? "rtl" : "ltr"}>
+              <TestimonialsColumn
+                artists={showcaseArtists}
+                locale={locale}
+                orientation="horizontal"
+                autoPlay={false}
+                className="snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:hidden"
+              />
+              {renderShowcaseColumns(2, "hidden grid-cols-2 md:grid lg:hidden")}
+              {renderShowcaseColumns(3, "hidden grid-cols-3 lg:grid")}
+            </div>
 
-          <Link
-            to="/artists"
-            className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {isHebrew ? "צפו בספריית האמנים המלאה" : "View the full artist directory"} <Arrow size={14} />
-          </Link>
-        </div>
-      </AnimatedSection>
+            <Link
+              to="/artists"
+              className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {isHebrew ? "צפו בספריית האמנים המלאה" : "View the full artist directory"} <Arrow size={14} />
+            </Link>
+          </div>
+        </AnimatedSection>
+      )}
     </>
   );
 };
