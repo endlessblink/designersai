@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, ExternalLink, Image } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
-import { Artist, artists as fallbackArtists, getArtistInitials } from "@/data/artists";
+import { Artist, artists as fallbackArtists, getArtistDisplayTitle, getArtistInitials } from "@/data/artists";
 import { fetchPublishedArtists } from "@/lib/cms";
 
 const ArtistProfile = () => {
@@ -16,7 +16,10 @@ const ArtistProfile = () => {
 
     fetchPublishedArtists().then((publishedArtists) => {
       if (!active) return;
-      setArtist(publishedArtists.find((candidate) => candidate.slug === slug));
+      setArtist(
+        publishedArtists.find((candidate) => candidate.slug === slug)
+          ?? fallbackArtists.find((candidate) => candidate.slug === slug),
+      );
       setLoading(false);
     });
 
@@ -80,7 +83,7 @@ const ArtistProfile = () => {
               <h1 className="mt-3 font-display text-4xl leading-tight text-foreground md:text-6xl">{artist.name}</h1>
               {artist.hebrewName && <p className="mt-2 font-display text-2xl text-muted-foreground">{artist.hebrewName}</p>}
               <p className="mt-6 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                {[artist.title, artist.location].filter(Boolean).join(" / ")}
+                {[getArtistDisplayTitle(artist), artist.location].filter(Boolean).join(" / ")}
               </p>
               <p className="mt-8 max-w-2xl font-body text-lg font-light leading-relaxed text-muted-foreground">{artist.bio}</p>
 

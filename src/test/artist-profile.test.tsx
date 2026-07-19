@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "@/App";
 
 describe("artist profile routes", () => {
   afterEach(() => {
+    vi.unstubAllGlobals();
     window.history.pushState({}, "", "/");
   });
 
@@ -41,5 +42,36 @@ describe("artist profile routes", () => {
 
     expect(await screen.findByRole("heading", { name: "Artist not found" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Back to all artists" })).toHaveAttribute("href", "/artists");
+  });
+
+  it("shows the curated Community Lead role on existing lead profiles", async () => {
+    window.history.pushState({}, "", "/artists/maya-elav-nachshon");
+
+    render(<App />);
+
+    expect(await screen.findByRole("heading", { name: "Maya Elav Nachshon" })).toBeInTheDocument();
+    expect(screen.getByText("Community Lead")).toBeInTheDocument();
+  });
+
+  it("keeps Miri Pinko available when the CMS returns a partial roster", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        artists: [{ slug: "nataly-shafir", name: "Nataly Shafir", title: "Founder", bio: "Founder bio" }],
+      }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    window.history.pushState({}, "", "/artists/miri-pinko");
+
+    render(<App />);
+
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+    expect(await screen.findByRole("heading", { name: "Miri Pinko" })).toBeInTheDocument();
+    expect(screen.getByText("MP")).toBeInTheDocument();
+    expect(screen.getByText("Community Lead")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Update profile" })).toHaveAttribute(
+      "href",
+      "/creator-submission?artist=miri-pinko",
+    );
   });
 });

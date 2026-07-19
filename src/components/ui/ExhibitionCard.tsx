@@ -27,7 +27,7 @@ const ExhibitionCard = ({ ex, index }: { ex: ExhibitionItem; index: number }) =>
       transition={{ duration: 0.6, delay: index * 0.15 }}
     >
       <Link to={ex.slug} className="group block">
-        <div ref={ref} className="relative overflow-hidden aspect-[4/3]">
+        <div ref={ref} className="relative overflow-hidden aspect-[9/16]">
           <motion.div style={{ y }} className="absolute -inset-y-[15%] inset-x-0">
             {ex.video ? (
               <video
@@ -50,7 +50,7 @@ const ExhibitionCard = ({ ex, index }: { ex: ExhibitionItem; index: number }) =>
         </div>
         <div className="mt-5">
           <h3 className="font-display text-2xl text-foreground">{ex.title}</h3>
-          <p className="text-sm text-muted-foreground font-body mt-1">{ex.city}</p>
+          <p className="mt-2 text-base text-foreground/70 font-body md:text-lg">{ex.city}</p>
         </div>
       </Link>
     </motion.div>

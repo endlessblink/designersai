@@ -6,9 +6,9 @@ import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import ExhibitionCard from "@/components/ui/ExhibitionCard";
-import ArtistCard from "@/components/ArtistCard";
-import { Artist, featuredArtists as fallbackFeaturedArtists } from "@/data/artists";
-import { fetchFeaturedArtists } from "@/lib/cms";
+import HomepageCommunity from "@/components/HomepageCommunity";
+import { Artist, artists as fallbackArtists } from "@/data/artists";
+import { fetchPublishedArtists } from "@/lib/cms";
 
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
@@ -20,10 +20,10 @@ const IndexHe = () => {
     offset: ["start start", "end start"],
   });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const [featuredArtists, setFeaturedArtists] = useState<Artist[]>(fallbackFeaturedArtists);
+  const [communityArtists, setCommunityArtists] = useState<Artist[]>(fallbackArtists);
 
   useEffect(() => {
-    fetchFeaturedArtists().then(setFeaturedArtists);
+    fetchPublishedArtists().then(setCommunityArtists);
   }, []);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ const IndexHe = () => {
                 },
                 {
                   title: "Too Much Manuela",
-                  city: "אירוע קהילתי",
+                  city: "באזל, שווייץ",
                   image: exhibitionTelAviv,
                   video: "/videos/too-much-manuela.mp4",
                   slug: "#exhibitions",
@@ -161,27 +161,7 @@ const IndexHe = () => {
           </div>
         </section>
 
-        {/* Community Preview */}
-        <AnimatedSection id="artists" className="scroll-mt-20 py-24 md:py-32">
-          <div className="container">
-            <SectionHeading
-              label="קהילה"
-              title="רשת יוצרים הולכת וגדלה"
-              description="אמנים, מעצבים ואנשי תרבות מרחבי העולם — מאוחדים בסקרנות ובעשייה יצירתית עם בינה מלאכותית."
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 text-left" dir="ltr">
-              {featuredArtists.map((artist, i) => (
-                <ArtistCard key={artist.slug} artist={artist} index={i} compact locale="he" />
-              ))}
-            </div>
-            <Link
-              to="/artists"
-              className="mt-10 inline-flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-foreground transition-colors"
-            >
-              צפו בכל אמני הקהילה <ArrowLeft size={14} />
-            </Link>
-          </div>
-        </AnimatedSection>
+        <HomepageCommunity artists={communityArtists} locale="he" />
 
         {/* Weekly Practice */}
         <section id="weekly-practice" className="scroll-mt-20 py-24 md:py-32 bg-deep-charcoal">

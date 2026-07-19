@@ -4,10 +4,30 @@ import { join } from "node:path";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ArtistCard from "@/components/ArtistCard";
+import ExhibitionCard from "@/components/ui/ExhibitionCard";
 import { artists, featuredArtists } from "@/data/artists";
 import Exhibitions from "@/pages/Exhibitions";
 
 describe("artist profile images", () => {
+  it("frames homepage exhibition videos in a 9:16 portrait ratio", () => {
+    const { container } = render(
+      <MemoryRouter>
+        <ExhibitionCard
+          ex={{
+            title: "Almost Real",
+            city: "Tel Aviv",
+            image: "/placeholder.svg",
+            video: "/videos/almost-real.mp4",
+            slug: "/exhibitions/almost-real",
+          }}
+          index={0}
+        />
+      </MemoryRouter>,
+    );
+
+    expect(container.querySelector("video")?.closest(".relative")).toHaveClass("aspect-[9/16]");
+  });
+
   it.each([
     ["nataly-shafir", "/images/artists/nataly-shafir.png"],
     ["maya-elav-nachshon", "/images/artists/maya-elav-nachshon.png"],

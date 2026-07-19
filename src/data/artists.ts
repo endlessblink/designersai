@@ -82,6 +82,7 @@ export const artists: Artist[] = [
   { slug: "ariel-eloya-k", name: "אריל אלויה ק.", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "tali-apel", name: "טלי אפל", title: "Community Artist", bio: "Community artist in the Designers with AI network." },
   { slug: "adi-erlich", name: "Adi Erlich", title: "Community Artist", bio: "Community artist in the Designers with AI network.", image: "/images/artists/adi-erlich.png", isFeatured: true },
+  { slug: "miri-pinko", name: "Miri Pinko", title: "Community Lead", bio: "Community lead supporting the Designers with AI network." },
 ];
 
 export const orderArtistsWithImagesFirst = (artistList: Artist[]) =>
@@ -90,6 +91,24 @@ export const orderArtistsWithImagesFirst = (artistList: Artist[]) =>
 export const featuredArtists = orderArtistsWithImagesFirst(artists.filter((artist) => artist.isFeatured));
 
 export const getArtistProfilePath = (slug: string) => `/artists/${slug}`;
+
+export const founderSlug = "nataly-shafir";
+
+export const communityLeadSlugs = [
+  "maya-elav-nachshon",
+  "noam-naumovsky",
+  "ifat-kariv-gurion",
+  "adi-erlich",
+  "miri-pinko",
+] as const;
+
+export const isCommunityLead = (slug: string) => communityLeadSlugs.some((leadSlug) => leadSlug === slug);
+
+export const getArtistDisplayTitle = (artist: Artist, locale: "en" | "he" = "en") => {
+  if (artist.slug === founderSlug) return locale === "he" ? "מייסדת ומנהלת אמנותית" : "Founder & Artistic Director";
+  if (isCommunityLead(artist.slug)) return locale === "he" ? "הובלת הקהילה" : "Community Lead";
+  return locale === "he" ? "אמנית בקהילה" : artist.title;
+};
 
 const artistAliases: Record<string, string> = {
   "maya elhav nachson": "maya-elav-nachshon",

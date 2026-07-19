@@ -1,7 +1,7 @@
 import { ArrowUpRight, Image } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Artist, getArtistInitials, getArtistProfilePath } from "@/data/artists";
+import { Artist, getArtistDisplayTitle, getArtistInitials, getArtistProfilePath } from "@/data/artists";
 
 interface ArtistCardProps {
   artist: Artist;
@@ -12,9 +12,7 @@ interface ArtistCardProps {
 
 const ArtistCard = ({ artist, index = 0, compact = false, locale = "en" }: ArtistCardProps) => {
   const isHebrew = locale === "he";
-  const title = isHebrew
-    ? artist.isFounder ? "מייסדת ומנהלת אמנותית" : "אמנית בקהילה"
-    : artist.title;
+  const title = getArtistDisplayTitle(artist, locale);
   const location = isHebrew && artist.location === "Israel" ? "ישראל" : artist.location;
   const profilePath = getArtistProfilePath(artist.slug);
 

@@ -6,9 +6,9 @@ import PageLayout from "@/components/layout/PageLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import ExhibitionCard from "@/components/ui/ExhibitionCard";
-import ArtistCard from "@/components/ArtistCard";
-import { Artist, featuredArtists as fallbackFeaturedArtists } from "@/data/artists";
-import { fetchFeaturedArtists } from "@/lib/cms";
+import HomepageCommunity from "@/components/HomepageCommunity";
+import { Artist, artists as fallbackArtists } from "@/data/artists";
+import { fetchPublishedArtists } from "@/lib/cms";
 
 import exhibitionTelAviv from "@/assets/exhibition-telav.jpg";
 import exhibitionBangkok from "@/assets/exhibition-bangkok.jpg";
@@ -20,10 +20,10 @@ const Index = () => {
     offset: ["start start", "end start"],
   });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const [featuredArtists, setFeaturedArtists] = useState<Artist[]>(fallbackFeaturedArtists);
+  const [communityArtists, setCommunityArtists] = useState<Artist[]>(fallbackArtists);
 
   useEffect(() => {
-    fetchFeaturedArtists().then(setFeaturedArtists);
+    fetchPublishedArtists().then(setCommunityArtists);
   }, []);
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const Index = () => {
       </AnimatedSection>
 
       {/* Featured Exhibitions */}
-      <section className="py-16 md:py-24 bg-secondary/50">
+      <section id="exhibitions" className="scroll-mt-20 py-16 md:py-24 bg-secondary/50">
         <div className="container">
           <SectionHeading
             label="Exhibitions"
@@ -147,7 +147,7 @@ const Index = () => {
               },
               {
                 title: "Too Much Manuela",
-                city: "Community event",
+                city: "Basel, Switzerland",
                 image: exhibitionTelAviv,
                 video: "/videos/too-much-manuela.mp4",
                 slug: "#exhibitions",
@@ -160,27 +160,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Community Preview */}
-      <AnimatedSection className="py-24 md:py-32">
-        <div className="container">
-          <SectionHeading
-            label="Community"
-            title="A Growing Network of Creators"
-            description="Artists, designers, and cultural practitioners from around the world — united by curiosity and creative practice with AI."
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
-            {featuredArtists.map((artist, i) => (
-              <ArtistCard key={artist.slug} artist={artist} index={i} compact />
-            ))}
-          </div>
-          <Link
-            to="/artists"
-            className="mt-10 inline-flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-foreground transition-colors"
-          >
-            View all community artists <ArrowRight size={14} />
-          </Link>
-        </div>
-      </AnimatedSection>
+      <HomepageCommunity artists={communityArtists} />
 
       {/* Weekly Practice */}
       <section className="py-24 md:py-32 bg-deep-charcoal">
