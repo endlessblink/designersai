@@ -4,11 +4,26 @@ import { join } from "node:path";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ArtistCard from "@/components/ArtistCard";
+import HomepageCommunity from "@/components/HomepageCommunity";
 import ExhibitionCard from "@/components/ui/ExhibitionCard";
 import { artists, featuredArtists } from "@/data/artists";
 import Exhibitions from "@/pages/Exhibitions";
 
 describe("artist profile images", () => {
+  it("uses one consistent crop for every Community Lead portrait", () => {
+    render(
+      <MemoryRouter>
+        <HomepageCommunity artists={artists} />
+      </MemoryRouter>,
+    );
+
+    const leadsSection = screen.getByRole("heading", { name: "Community Leads" }).closest("section")!;
+    const portraits = [...leadsSection.querySelectorAll("img")];
+
+    expect(portraits).toHaveLength(5);
+    expect(portraits.every((portrait) => portrait.classList.contains("object-cover"))).toBe(true);
+  });
+
   it("frames homepage exhibition videos in a 9:16 portrait ratio", () => {
     const { container } = render(
       <MemoryRouter>

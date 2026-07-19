@@ -9,7 +9,6 @@ import {
   communityLeadSlugs,
   founderSlug,
   getArtistDisplayTitle,
-  getArtistImageFitClass,
   getArtistInitials,
   getArtistProfilePath,
 } from "@/data/artists";
@@ -117,7 +116,7 @@ const HomepageCommunity = ({ artists, locale = "en" }: HomepageCommunityProps) =
                       <img
                         src={artist.image}
                         alt=""
-                        className={`h-full w-full ${getArtistImageFitClass(artist)} transition-transform duration-700 group-hover:scale-[1.025]`}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
                       />
                     ) : (
                       <div className="flex h-full flex-col items-center justify-center gap-4 text-muted-foreground">
